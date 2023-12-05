@@ -18,7 +18,7 @@ app.get("/", (req, res)=> {
 })
 
 
-app.get("/students", (req,res)=>{
+app.get("/students", (req , res)=>{
   const q = "SELECT * FROM student"
   db.query(q,(err, data)=> {
     if (err) return res.json(err)
@@ -26,6 +26,10 @@ app.get("/students", (req,res)=>{
   })
 })
 
+
+app.post('/add', (req, res) => {
+  const q  = "insert into student";
+})
 
 
 app.listen(8800, () =>{
