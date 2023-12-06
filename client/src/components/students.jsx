@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, {useState} from "react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const Students = () => {
@@ -15,8 +16,11 @@ const Students = () => {
     research_interest:"",
     date_of_hire: '',
     courses_taught:"",
-    office_location:"",
+    offfice_location:"",
   });
+
+  const nav = useNavigate();
+
 
 
   const handleInputChange = (event) => {
@@ -35,6 +39,7 @@ const Students = () => {
       console.log(err)
     }
     console.log('instructor data to be sent to the server:', instructor);
+    nav('/');
   };
 
   return (
@@ -208,16 +213,16 @@ const Students = () => {
 
 
         <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="office_location">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="offfice_location">
             Office Location
           </label>
           <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="office_location"
+              id="offfice_location"
               type="text"
               placeholder="Office Location"
-              name="office_location"
-              value={instructor.office_location}
+              name="offfice_location"
+              value={instructor.offfice_location}
               onChange={handleInputChange}
               required
             />
