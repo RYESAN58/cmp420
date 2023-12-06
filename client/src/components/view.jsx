@@ -40,12 +40,23 @@ const StudentsTable = () => {
                     className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                     Major
                   </th>
-                  {/* Add more <th> elements here for each column you want */}
+                  <th
+                    className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    D.O.B
+                  </th>
+                  <th
+                    className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    EMPLID
+                  </th>
+                  <th
+                    className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Phone #
+                  </th>
                 </tr>
               </thead>
               <tbody>
-                {students.map((student) => (
-                  <tr key={student.emplid}>
+                {students.map((student, key) => (
+                  <tr key={key}>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                       <div className="flex items-center">
                         <div className="ml-3">
@@ -69,6 +80,33 @@ const StudentsTable = () => {
                         <div className="ml-3">
                           <p className="text-gray-900 whitespace-no-wrap">
                             {student.major}
+                          </p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <div className="flex items-center">
+                        <div className="ml-3">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            {student.DOB}
+                          </p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <div className="flex items-center">
+                        <div className="ml-3">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            {student.emplid}
+                          </p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <div className="flex items-center">
+                        <div className="ml-3">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            {student.phone}
                           </p>
                         </div>
                       </div>
