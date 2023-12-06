@@ -8,8 +8,8 @@ const Header = () => {
     <header className="bg-blue-500 text-white body-font shadow w-full">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
         <nav className="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
-          <Link to='/' className="mr-5 hover:text-gray-200">Add Student</Link>
-          <Link to='/remmove' className="mr-5 hover:text-gray-200">Remove Student</Link>
+          <Link to='/' className="mr-5 hover:text-gray-200">Add Instructor</Link>
+          <Link to='/remmove' className="mr-5 hover:text-gray-200">Remove Instructor</Link>
         </nav>
         <a className="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-gray-900 lg:items-center lg:justify-center mb-4 md:mb-0">
           <span className="ml-3 text-xl">Lehman College</span>

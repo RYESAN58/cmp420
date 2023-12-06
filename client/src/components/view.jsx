@@ -5,13 +5,13 @@ import { useEffect } from 'react';
 
 
 const StudentsTable = () => {
-  const [students, setstudent] = useState([]);
+  const [instructors, setinstructor] = useState([]);
 
   useEffect(() => {
     const fetchAll = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/students")
-        setstudent(res.data)
+        const res = await axios.get("http://localhost:8800/instructors")
+        setinstructor(res.data)
         console.log(res)
       }catch(err){
         console.log(err)
@@ -38,11 +38,11 @@ const StudentsTable = () => {
                   </th>
                   <th
                     className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                    Major
+                    Address
                   </th>
                   <th
                     className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                    D.O.B
+                    Hire Date
                   </th>
                   <th
                     className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -52,16 +52,32 @@ const StudentsTable = () => {
                     className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                     Phone #
                   </th>
+                  <th
+                    className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Teaching Intrest
+                  </th>
+                  <th
+                    className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Research Intrest
+                  </th>
+                  <th
+                    className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Courses Taught
+                  </th>
+                  <th
+                    className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Office Location
+                  </th>
                 </tr>
               </thead>
               <tbody>
-                {students.map((student, key) => (
+                {instructors.map((instructor,key) => (
                   <tr key={key}>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                       <div className="flex items-center">
                         <div className="ml-3">
                           <p className="text-gray-900 whitespace-no-wrap">
-                            {student.name}
+                            {instructor.firstname} {instructor.lastname}
                           </p>
                         </div>
                       </div>
@@ -70,7 +86,7 @@ const StudentsTable = () => {
                       <div className="flex items-center">
                         <div className="ml-3">
                           <p className="text-gray-900 whitespace-no-wrap">
-                            {student.email}
+                            {instructor.email}
                           </p>
                         </div>
                       </div>
@@ -79,7 +95,7 @@ const StudentsTable = () => {
                       <div className="flex items-center">
                         <div className="ml-3">
                           <p className="text-gray-900 whitespace-no-wrap">
-                            {student.major}
+                            {instructor.address}
                           </p>
                         </div>
                       </div>
@@ -88,7 +104,7 @@ const StudentsTable = () => {
                       <div className="flex items-center">
                         <div className="ml-3">
                           <p className="text-gray-900 whitespace-no-wrap">
-                            {student.DOB}
+                            {instructor.date_of_hire}
                           </p>
                         </div>
                       </div>
@@ -97,7 +113,7 @@ const StudentsTable = () => {
                       <div className="flex items-center">
                         <div className="ml-3">
                           <p className="text-gray-900 whitespace-no-wrap">
-                            {student.emplid}
+                            {instructor.emplid}
                           </p>
                         </div>
                       </div>
@@ -106,7 +122,53 @@ const StudentsTable = () => {
                       <div className="flex items-center">
                         <div className="ml-3">
                           <p className="text-gray-900 whitespace-no-wrap">
-                            {student.phone}
+                            {instructor.phone}
+                          </p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <div className="flex items-center">
+                        <div className="ml-3">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            {instructor.teaching_interest}
+                          </p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <div className="flex items-center">
+                        <div className="ml-3">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            {instructor.research_interest}
+                          </p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <div className="flex items-center">
+                        <div className="ml-3">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            {instructor.courses_taught}
+                          </p>
+                        </div>
+                        
+                      </div>
+                    </td>
+                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <div className="flex items-center">
+                        <div className="ml-3">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            {instructor.offfice_location}
+                          </p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <div className="flex items-center">
+                        <div className="ml-3">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            {instructor.office_location}
                           </p>
                         </div>
                       </div>

@@ -1,30 +1,40 @@
+import axios from "axios";
 import React, {useState} from "react";
+import { useEffect } from "react";
 
 
 const Students = () => {
-  const [student, setStudent] = useState({
+  const [instructor, setinstructor] = useState({
     emplid: '',
-    address: '',
-    major: '',
-    dob: '',
     email: '',
-    phone: '',
-    name: '',
+    address: '',
     firstname: '',
     lastname: '',
-    mintial: '',
-    employment_recordid: ''
+    phone: '',
+    teaching_interest: '',
+    research_interest:"",
+    date_of_hire: '',
+    courses_taught:"",
+    office_location:"",
   });
+
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setStudent({ ...student, [name]: value });
+    setinstructor({ ...instructor, [name]: value });
+    console.log(instructor)
   };
 
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Student data to be sent to the server:', student);
+
+    try{
+      await axios.post('http://localhost:8800/add', instructor)
+    }catch(err){
+      console.log(err)
+    }
+    console.log('instructor data to be sent to the server:', instructor);
   };
 
   return (
@@ -32,16 +42,16 @@ const Students = () => {
       <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firstName">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firstname">
             First Name
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="firstName"
+            id="firstname"
             type="text"
             placeholder="First Name"
-            name="firstName"
-            value={student.firstName}
+            name="firstname"
+            value={instructor.firstname}
             onChange={handleInputChange}
             required
           />
@@ -49,16 +59,16 @@ const Students = () => {
 
 
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="lastName">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="lastname">
             Last Name
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="lastName"
+            id="lastname"
             type="text"
             placeholder="Last Name"
-            name="lastName"
-            value={student.lastName}
+            name="lastname"
+            value={instructor.lastname}
             onChange={handleInputChange}
             required
           />
@@ -75,7 +85,7 @@ const Students = () => {
             type="email"
             placeholder="Email"
             name="email"
-            value={student.email}
+            value={instructor.email}
             onChange={handleInputChange}
             required
           />
@@ -83,16 +93,16 @@ const Students = () => {
 
 
         <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="major">
-            Major
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="courses_taught">
+            Courses Taught
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="major"
+            id="courses_taught"
             type="text"
-            placeholder="Major"
-            name="major"
-            value={student.major}
+            placeholder="Courses Taught"
+            name="courses_taught"
+            value={instructor.courses_taught}
             onChange={handleInputChange}
             required
           />
@@ -108,14 +118,114 @@ const Students = () => {
               type="text"
               placeholder="Employee ID"
               name="emplid"
-              value={student.emplid}
+              value={instructor.emplid}
               onChange={handleInputChange}
               required
             />
         </div>
+
+        <div className="mb-6">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+            Teaching Interest
+          </label>
+          <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="teaching_interest"
+              type="text"
+              placeholder="Teaching Interest"
+              name="teaching_interest"
+              value={instructor.teaching_interest}
+              onChange={handleInputChange}
+              required
+            />
+        </div>
+
+        <div className="mb-6">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+            Research Interest
+          </label>
+          <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="research_interest"
+              type="text"
+              placeholder="Research Interest"
+              name="research_interest"
+              value={instructor.research_interest}
+              onChange={handleInputChange}
+              required
+            />
+        </div>
+
+
+        <div className="mb-6">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phone">
+              Phone
+          </label>
+          <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="phone"
+              type="text"
+              placeholder="Phone #"
+              name="phone"
+              value={instructor.phone}
+              onChange={handleInputChange}
+              required
+            />
+        </div>
+
+
+        <div className="mb-6">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
+              Address
+          </label>
+          <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="address"
+              type="text"
+              placeholder="Address"
+              name="address"
+              value={instructor.address}
+              onChange={handleInputChange}
+              required
+            />
+        </div>
+
+        <div className="mb-6">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="date_of_hire">
+            Date Of Hire
+          </label>
+          <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="date_of_hire"
+              type="text"
+              placeholder="Date Of Hire"
+              name="date_of_hire"
+              value={instructor.date_of_hire}
+              onChange={handleInputChange}
+              required
+            />
+        </div>
+
+
+        <div className="mb-6">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="office_location">
+            Office Location
+          </label>
+          <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="office_location"
+              type="text"
+              placeholder="Office Location"
+              name="office_location"
+              value={instructor.office_location}
+              onChange={handleInputChange}
+              required
+            />
+        </div>
+
         <div className="flex items-center justify-between">
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-            Add Student
+            Add instructor
           </button>
         </div>
       </form>

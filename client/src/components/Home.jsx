@@ -9,13 +9,13 @@ const HomePage = () => {
         <p className="mb-4">Manage student records and data with ease.</p>
         <div className="space-x-4">
           <Link to="/view" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            View Students
+            View instructors
           </Link>
           <Link to="/add" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-            Add Student
+            Add instructor
           </Link>
           <Link to="/remove" className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-            Remove Student
+            Remove instructor
           </Link>
         </div>
       </div>
