@@ -45,6 +45,17 @@ app.post('/add', (req, res) => {
 })
 
 
+app.delete("/instructors/:id", (req,res)=>{
+  const instructorId = req.params.id;
+  const q = "DELETE FROM `cmpsci`.`instructor` WHERE (`emplid` = ?)"
+
+  db.query(q,[instructorId], (err, data)=>{
+    if(err) return res.json(err);
+    return res.json("DELETED")
+  })
+})
+
+
 app.listen(8800, () =>{
   console.log("connected to backend");
 })

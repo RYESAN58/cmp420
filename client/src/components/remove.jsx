@@ -23,8 +23,13 @@ const Remove = () => {
     fetchAll()
   }, [])
 
-  const handleDelete = (id) => {
-    setinstructor(instructors.filter(instructor => instructor.id !== id));
+  const handleDelete = async (id) => {
+    try{
+      await axios.delete('http://localhost:8800/instructors/'+id);
+      window.location.reload()
+    }catch(err){
+      console.log(err);
+    }
   };
 
   return (
