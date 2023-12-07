@@ -70,10 +70,21 @@ app.get("/instructors/:id", (req, res) => {
   });
 });
 
-app.put("/instructors/:id"), (req, res)=>{
+app.put("/instructors/:id", (req, res) => {
   const instructorId = req.params.id;
-  const q ='UPDATE `cmpsci`.`instructor` SET `email` = ?, `address` = ?, `firstname` = ?, `lastname` = ?, `phone` = ?, `teaching_interest` = ?, `research_interest` = ? WHERE (`emplid` = ?)'
-}
+  const { email, address, firstname, lastname, phone, teaching_interest, research_interest } = req.body;
+
+  const q = 'UPDATE `cmpsci`.`instructor` SET `email` = ?, `address` = ?, `firstname` = ?, `lastname` = ?, `phone` = ?, `teaching_interest` = ?, `research_interest` = ? WHERE (`emplid` = ?)';
+
+  db.query(q, [email, address, firstname, lastname, phone, teaching_interest, research_interest, instructorId], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Failed to update instructor");
+    } else {
+      res.status(200).send("Instructor updated successfully");
+    }
+  });
+});
 
 app.listen(8800, () =>{
   console.log("connected to backend");
