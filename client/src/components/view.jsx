@@ -2,11 +2,15 @@ import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const StudentsTable = () => {
   const [instructors, setinstructor] = useState([]);
+  const [selectedInstructor, setSelectedInstructor] = useState(null);
 
+  const nav = useNavigate();
   useEffect(() => {
     const fetchAll = async () => {
       try{
@@ -19,6 +23,13 @@ const StudentsTable = () => {
     }
     fetchAll()
   }, [])
+
+
+  const handleRowClick = (instructorId) => {
+    console.log(instructorId)
+    nav(`/specific/${instructorId}`)
+  };
+
   
   return (
     <div className="container mx-auto px-4 sm:px-8">
@@ -72,8 +83,13 @@ const StudentsTable = () => {
               </thead>
               <tbody>
                 {instructors.map((instructor,key) => (
-                  <tr key={key}>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                  <tr 
+                    key={key} 
+                    className="hover:bg-gray-400 cursor-pointer"
+                    onClick={() => handleRowClick(instructor.emplid)}
+                    >
+                    {/* here */}
+                    <td className="px-5 py-5 border-b border-gray-200 text-sm ">
                       <div className="flex items-center">
                         <div className="ml-3">
                           <p className="text-gray-900 whitespace-no-wrap">
@@ -160,15 +176,6 @@ const StudentsTable = () => {
                         <div className="ml-3">
                           <p className="text-gray-900 whitespace-no-wrap">
                             {instructor.offfice_location}
-                          </p>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <div className="flex items-center">
-                        <div className="ml-3">
-                          <p className="text-gray-900 whitespace-no-wrap">
-                            {instructor.office_location}
                           </p>
                         </div>
                       </div>

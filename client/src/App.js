@@ -6,6 +6,8 @@ import Header from './components/header';
 import Remove from './components/remove';
 import HomePage from './components/Home';
 import StudentsTable from './components/view';
+import InstructorDetails from './components/details';
+
 
 function App() {
   
@@ -18,6 +20,7 @@ function App() {
           <Route path='/add' element={<Students/>}/>
           <Route path='/remmove' element={<Remove/>}/>
           <Route path='/view' element={<StudentsTable/>}/>
+          <Route path='/specific/:id' element={<InstructorDetails/>}/>
         </Routes>
       </BrowserRouter>
       

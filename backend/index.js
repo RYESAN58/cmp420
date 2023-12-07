@@ -30,7 +30,6 @@ app.get("/instructors", (req , res)=>{
 
 app.post('/add', (req, res) => {
   const q = `INSERT INTO cmpsci.instructor (emplid ,email, address, firstname, lastname, phone, teaching_interest, research_interest, date_of_hire, courses_taught, offfice_location ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-  console.log(req.body)
   const { emplid ,email, address, firstname, lastname, phone, teaching_interest, research_interest, date_of_hire, courses_taught, offfice_location } = req.body;
 
   db.query(q, [emplid ,email, address, firstname, lastname, phone, teaching_interest, research_interest, date_of_hire, courses_taught, offfice_location], (err, result)=> {
@@ -55,6 +54,26 @@ app.delete("/instructors/:id", (req,res)=>{
   })
 })
 
+
+
+app.get("/instructors/:id", (req, res) => {
+  const instructorId = req.params.id;
+  const q = 'SELECT * FROM instructor WHERE emplid = ?';
+
+  db.query(q, [instructorId], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Error fetching instructor data");
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
+
+app.put("/instructors/:id"), (req, res)=>{
+  const instructorId = req.params.id;
+  const q ='UPDATE `cmpsci`.`instructor` SET `email` = ?, `address` = ?, `firstname` = ?, `lastname` = ?, `phone` = ?, `teaching_interest` = ?, `research_interest` = ? WHERE (`emplid` = ?)'
+}
 
 app.listen(8800, () =>{
   console.log("connected to backend");
